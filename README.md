@@ -1,4 +1,4 @@
-recipe- Application
+Recipe- Application
 
 REST API sample project to manage Recipes(java11,Springboot2.5,H2,SpringDataJPA)
 
@@ -9,6 +9,8 @@ This application is a REST API app that will help manage the recipes. This API c
 run the appliation using maven 
 
 To build the application
+
+from the project root directlry run the below command
 
    mvn clean install
 
