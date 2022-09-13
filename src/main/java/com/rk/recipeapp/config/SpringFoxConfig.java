@@ -20,23 +20,10 @@ public class SpringFoxConfig {
    @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.rk.recipeapp"))
                 .paths(PathSelectors.any())
                 .build();
     }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "Recipe API",
-                "This API is used to manage recipes.",
-                "1.0",
-                "www.codenomads.nl",
-                new Contact("Kirankumar Bollam", "", "b.kirankumar77@gmail.com"),
-                "Free to Use",
-                "",
-                Collections.emptyList());
-    }
-}
+ }
 
