@@ -1,9 +1,5 @@
 package com.rk.recipeapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -20,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Recipe {
-
 
     private Long recipeId;
     @NotNull
