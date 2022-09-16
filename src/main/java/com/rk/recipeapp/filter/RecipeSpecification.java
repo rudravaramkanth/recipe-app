@@ -3,9 +3,11 @@ package com.rk.recipeapp.filter;
 import com.rk.recipeapp.entiry.RecipeEntity;
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
+
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 
 public class RecipeSpecification {
@@ -16,7 +18,7 @@ public class RecipeSpecification {
 
     public static Specification<RecipeEntity> getRecipeByCriteria(RecipeFilter filter) {
         List<Predicate> predicates = new ArrayList<>();
-        return (root,  query, criteriaBuilder) -> {
+        return (root, query, criteriaBuilder) -> {
             if (filter.getIsVeg() != null) {
                 predicates.add(criteriaBuilder
                         .equal(root.<Boolean>get("isVeg"), filter.getIsVeg()));
@@ -38,7 +40,7 @@ public class RecipeSpecification {
                         .notLike(criteriaBuilder.lower(root.get("ingredients")),
                                 "%" + filter.getExcludeIngredient().toLowerCase() + "%"));
             }
-            System.out.println("predicates"+predicates.toString());
+            System.out.println("predicates" + predicates.toString());
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }

@@ -6,10 +6,11 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 public class RecipeMapper {
 
-      private RecipeMapper() {
+    private RecipeMapper() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -21,7 +22,7 @@ public class RecipeMapper {
                 .isVeg(entity.getIsVeg())
                 .ingredients(entity.getIngredients() != null ? List.of(entity.getIngredients().split(","))
                         : new ArrayList<>())
-                 .build();
+                .build();
     }
 
     public static RecipeEntity mapToRecipeEntity(Recipe recipe) {
@@ -31,7 +32,7 @@ public class RecipeMapper {
                 .servings(recipe.getServings())
                 .isVeg(recipe.getIsVeg())
                 .ingredients(recipe.getIngredients() != null ? String.join(",", recipe.getIngredients()) : "")
-               .build();
+                .build();
     }
 
 }

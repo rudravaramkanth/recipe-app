@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class RecipeService {
@@ -22,10 +23,11 @@ public class RecipeService {
 
 
     public List<Recipe> viewRecipes() {
-         log.info("RecipeService::viewRecipes()");
+        log.info("RecipeService::viewRecipes()");
         var entities = recipeRepository.findAll();
         return entities.stream().map(RecipeMapper::mapToRecipe).collect(Collectors.toList());
     }
+
     public Recipe createRecipe(Recipe recipe) {
         log.info("RecipeService::createRecipe()");
         var recipeEntity = RecipeMapper.mapToRecipeEntity(recipe);
@@ -48,14 +50,14 @@ public class RecipeService {
         foundEntity.setIsVeg(recipe.getIsVeg());
         foundEntity.setIngredients(
                 recipe.getIngredients() != null ? String.join(",", recipe.getIngredients()) : "");
-         RecipeMapper.mapToRecipe(recipeRepository.save(foundEntity));
+        RecipeMapper.mapToRecipe(recipeRepository.save(foundEntity));
     }
 
     public void deleteRecipe(Long id) {
-       log.info("RecipeService::deleteRecipe()");
+        log.info("RecipeService::deleteRecipe()");
         Optional<RecipeEntity> optionalRecipeEntity = recipeRepository.findById(id);
         if (optionalRecipeEntity.isEmpty()) {
-           throw new RecipeNotFoundException("recipe is not found for recipe Id : " + id);
+            throw new RecipeNotFoundException("recipe is not found for recipe Id : " + id);
         }
         recipeRepository.deleteById(id);
     }
