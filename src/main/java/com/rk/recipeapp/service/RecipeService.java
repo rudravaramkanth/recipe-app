@@ -35,15 +35,15 @@ public class RecipeService {
         return RecipeMapper.mapToRecipe(entity);
     }
 
-    public void updateRecipe(Recipe recipe, Long id) {
+    public void updateRecipe(Recipe recipe, Long recipeId) {
         log.info("RecipeService::updateRecipe()");
-        var optionalRecipeEntity = recipeRepository.findById(id);
+        var optionalRecipeEntity = recipeRepository.findById(recipeId);
         if (optionalRecipeEntity.isEmpty()) {
-            throw new RecipeNotFoundException("recipe is not found for recipe Id : " + id);
+            throw new RecipeNotFoundException("recipe is not found for recipe Id : " + recipeId);
         }
         var foundEntity = optionalRecipeEntity.get();
 
-        foundEntity.setId(id);
+        foundEntity.setRecipeId(recipeId);;
         foundEntity.setRecipeName(recipe.getRecipeName());
         foundEntity.setInstructions(recipe.getInstructions());
         foundEntity.setServings(recipe.getServings());
