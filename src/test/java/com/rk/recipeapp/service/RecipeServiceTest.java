@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
@@ -55,6 +55,7 @@ class RecipeServiceTest {
   void deleteRecipeTest() {
     when(recipeRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(getRecipeEntity()));
     recipeService.deleteRecipe(1L);
+
   }
 
   @Test
@@ -72,12 +73,11 @@ class RecipeServiceTest {
       when(recipeRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
       recipeService.deleteRecipe(1L);
     });
-
   }
 
   private RecipeEntity getRecipeEntity() {
     RecipeEntity recipe = new RecipeEntity();
-    recipe.setId(1L);
+    recipe.setRecipeId(1L);
     recipe.setRecipeName("Salmon Soup");
     recipe.setInstructions("take bowl,take pan,salmon peices,chillpowder");
     recipe.setIngredients("");
