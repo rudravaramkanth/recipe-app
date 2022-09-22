@@ -40,7 +40,6 @@ public class RecipeSpecification {
                         .notLike(criteriaBuilder.lower(root.get("ingredients")),
                                 "%" + filter.getExcludeIngredient().toLowerCase() + "%"));
             }
-            //System.out.println("predicates" + predicates.toString());
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
